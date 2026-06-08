@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroPlan - Gestão Agrícola Inteligente</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+
+    <div id="welcome-screen" class="welcome-screen">
+        <div class="welcome-content">
+            <span class="welcome-badge">Tecnologia Inteligente para o Campo</span>
+            <h1>Agro<span>Plan</span></h1>
+            <p>Monitore o clima em tempo real, mapeie os limites da sua propriedade, meça distâncias e receba recomendações personalizadas para otimizar sua safra.</p>
+            
+            <div class="developer-credit">Developed by Gabriel Batista de Freitas</div>
+            
+            <button id="start-btn" class="btn-start">Acessar Painel de Controle</button>
+        </div>
+    </div>
+
+    <div class="dashboard">
+        
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>🌱 Agro<span>Plan</span></h2>
+                <p>Gestão e Monitoramento</p>
+            </div>
+
+            <div class="search-box">
+                <label for="location-input">Localize sua Fazenda:</label>
+                <div class="input-group">
+                    <input type="text" id="location-input" placeholder="Cidade, Estado" value="Londrina, Paraná">
+                    <button id="search-btn">Buscar</button>
+                </div>
+            </div>
+
+            <div class="widget mapping-widget">
+                <h3>🗺️ Ferramentas de Terreno</h3>
+                <p class="instruction-text">Clique em "Iniciar" e clique no mapa para contornar a área. O sistema medirá os lados e o tamanho total.</p>
+                
+                <div class="tool-buttons">
+    <button id="map-area-btn" class="btn-tool">📐 Iniciar Mapeamento</button>
+    <button id="clear-map-btn" class="btn-clear" style="display: none;">🗑️ Limpar Mapa</button>
+    
+    <button id="grid-toggle-btn" class="btn-tool" style="background: #2e7d32; margin-top: 5px;">🌐 Ativar Grade Topográfica</button>
+</div>
+
+                <div id="area-result" class="area-result" style="display: none;">
+    <div>📌 Última Área: <strong id="hectares-val">0.0</strong> ha</div>
+    <div style="margin-top: 5px; border-top: 1px solid #c8e6c9; padding-top: 5px; font-weight: 700;">
+        🚜 Total da Fazenda: <strong id="hectares-total-val">0.0</strong> ha
+    </div>
+</div>
+
+            <div class="widget crop-widget">
+                <h3>🌾 Sugestão de Cultivo para Hoje</h3>
+                <div class="crop-box">
+                    <span id="crop-icon">🌱</span>
+                    <div>
+                        <strong id="crop-title">Analisando clima...</strong>
+                        <p id="crop-desc">Insira uma localização para calcular a melhor cultura.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="widget weather-widget">
+                <h3>🌤️ Clima em Tempo Real</h3>
+                <div class="weather-info">
+                    <div class="temp-main">
+                        <span id="temp-val">--</span><span class="unit">°C</span>
+                    </div>
+                    <p id="weather-desc">Carregando...</p>
+                </div>
+                <div class="weather-details">
+                    <div class="detail-item"><span>💧 Umidade:</span> <strong id="humidity-val">--</strong></div>
+                    <div class="detail-item"><span>🌧️ Precipitação:</span> <strong id="rain-val">--</strong></div>
+                    <div class="detail-item"><span>💨 Vento:</span> <strong id="wind-val">--</strong></div>
+                </div>
+            </div>
+
+            <div class="widget tips-widget">
+                <h3>💡 Recomendação Sustentável</h3>
+                <p id="eco-tip">Aguardando localização...</p>
+            </div>
+        </aside>
+
+        <main class="map-container">
+            <div id="map"></div>
+        </main>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
